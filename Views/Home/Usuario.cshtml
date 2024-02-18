@@ -1,0 +1,39 @@
+﻿@model model_API
+
+@{
+    ViewData["Title"] = "Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <!-- Muestra la acción actual (Nuevo Usuario o Editar Usuario) obtenida del ViewBag -->
+        @ViewBag.Accion
+
+        <!-- Formulario para guardar cambios, apuntando a la acción "GuardarCambios" del controlador "Home" -->
+        <form asp-action="GuardarCambios" asp-controller="Home" method="post">
+
+            <!-- Campo oculto para almacenar el userId, se utiliza para identificar si es una edición o creación -->
+            <input asp-for="userId" type="hidden" />
+
+            <!-- Campo para ingresar el título del usuario -->
+            <div class="mb-2">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control form-control-sm" asp-for="title" />
+            </div>
+
+            <!-- Campo para ingresar el cuerpo del usuario -->
+            <div class="mb-2">
+                <label for="body" class="form-label">Cuerpo</label>
+                <input type="text" class="form-control form-control-sm" asp-for="body" />
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-success btn-sm">Guardar Cambios</button>
+            <!-- Enlace para volver a la lista de usuarios -->
+            <a asp-action="Index" asp-controller="Home" class="btn btn-warning btn-sm">Volver a la lista</a>
+
+        </form>
+    </div>
+    <hr />
+</div>
